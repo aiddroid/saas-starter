@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, CreditCard, Database } from 'lucide-react';
 import Link from 'next/link';
-import { Terminal } from './terminal';
+import Image from 'next/image';
 
 function PricingCard({
   name,
@@ -77,14 +77,22 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-              <Terminal />
+              <Image
+                src="/images/banner.png"
+                alt="Banner"
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-lg shadow-lg"
+                priority
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white w-full">
+      <section id="features" className="py-16 bg-white w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Features</h2>
           <div className="lg:grid lg:grid-cols-3 lg:gap-8">
             <div>
               <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
@@ -97,11 +105,11 @@ export default function HomePage() {
               </div>
               <div className="mt-5">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Next.js and React
+                  甘特图视图
                 </h2>
                 <p className="mt-2 text-base text-gray-500">
-                  Leverage the power of modern web technologies for optimal
-                  performance and developer experience.
+                  直观的甘特图界面，轻松规划项目时间线，实时调整任务进度，
+                  支持多种视图模式和自定义配置。
                 </p>
               </div>
             </div>
@@ -112,11 +120,11 @@ export default function HomePage() {
               </div>
               <div className="mt-5">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Postgres and Drizzle ORM
+                  任务管理
                 </h2>
                 <p className="mt-2 text-base text-gray-500">
-                  Robust database solution with an intuitive ORM for efficient
-                  data management and scalability.
+                  强大的任务管理功能，支持任务分解、依赖关系设置、进度跟踪，
+                  让项目管理更加高效和有序。
                 </p>
               </div>
             </div>
@@ -127,11 +135,11 @@ export default function HomePage() {
               </div>
               <div className="mt-5">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Stripe Integration
+                  团队协作
                 </h2>
                 <p className="mt-2 text-base text-gray-500">
-                  Seamless payment processing and subscription management with
-                  industry-leading Stripe integration.
+                  内置团队协作工具，支持实时评论、任务分配、资源管理，
+                  提升团队协作效率和项目透明度。
                 </p>
               </div>
             </div>
