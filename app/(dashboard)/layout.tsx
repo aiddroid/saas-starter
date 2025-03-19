@@ -97,11 +97,32 @@ function Header() {
   );
 }
 
+function Footer() {
+  return (
+    <footer className="border-t border-gray-200 mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div className="text-sm text-gray-500">
+          © {new Date().getFullYear()} Gantt Pro. All rights reserved.
+        </div>
+        <div className="flex items-center space-x-6">
+          <Link href="/terms" className="text-sm font-medium text-gray-700 hover:text-gray-900">
+            Terms of Service
+          </Link>
+          <Link href="/privacy" className="text-sm font-medium text-gray-700 hover:text-gray-900">
+            Privacy
+          </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <section className="flex flex-col min-h-screen">
       <Header />
       {children}
+      <Footer />
     </section>
   );
 }
