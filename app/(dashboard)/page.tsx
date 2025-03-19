@@ -1,6 +1,53 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CreditCard, Database } from 'lucide-react';
+import { ArrowRight, Check, CreditCard, Database } from 'lucide-react';
+import Link from 'next/link';
 import { Terminal } from './terminal';
+
+function PricingCard({
+  name,
+  price,
+  interval,
+  trialDays,
+  features,
+  highlighted,
+}: {
+  name: string;
+  price: number;
+  interval: string;
+  trialDays: number;
+  features: string[];
+  highlighted?: boolean;
+}) {
+  return (
+    <div className={`pt-6 ${highlighted ? 'ring-2 ring-orange-500 rounded-lg p-6' : 'p-6'}`}>
+      <h2 className="text-2xl font-medium text-gray-900 mb-2">{name}</h2>
+      <p className="text-sm text-gray-600 mb-4">
+        with {trialDays} day free trial
+      </p>
+      <p className="text-4xl font-medium text-gray-900 mb-6">
+        ${price / 100}{' '}
+        <span className="text-xl font-normal text-gray-600">
+          per user / {interval}
+        </span>
+      </p>
+      <ul className="space-y-4 mb-8">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-start">
+            <Check className="h-5 w-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" />
+            <span className="text-gray-700">{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <Button
+        className="w-full bg-white hover:bg-gray-100 text-black border border-gray-200 rounded-full flex items-center justify-center"
+        asChild
+      >
+        <Link href="/pricing">Get Started</Link>
+      </Button>
+    </div>
+  );
+}
+
 
 export default function HomePage() {
   return (
@@ -93,23 +140,145 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">价格方案</h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <PricingCard
+              name="Base"
+              price={800}
+              interval="month"
+              trialDays={7}
+              features={[
+                '最多5个工作区',
+                '基础功能访问',
+                '社区支持',
+                '标准API访问限制',
+                '基础数据分析',
+                '每日备份'
+              ]}
+            />
+            <PricingCard
+              name="Pro"
+              price={1500}
+              interval="month"
+              trialDays={7}
+              features={[
+                '无限工作区',
+                '所有高级功能',
+                '优先邮件支持',
+                '高级API访问权限',
+                '高级数据分析和报表',
+                '实时备份',
+                '自定义集成',
+                '团队协作工具'
+              ]}
+              highlighted={true}
+            />
+            <PricingCard
+              name="Enterprise"
+              price={2500}
+              interval="month"
+              trialDays={7}
+              features={[
+                'Pro版所有功能',
+                '专属客户经理',
+                '24/7企业级支持',
+                '无限API调用',
+                '自定义数据分析',
+                '多区域部署',
+                'SLA保障',
+                '安全合规保障',
+                '专属培训'
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">用户评价</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <p className="text-gray-600 mb-4">"这个SaaS模板帮助我们在短短两周内完成了产品的MVP版本，节省了大量的开发时间。"</p>
+              <div className="flex items-center">
+                <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
+                  <img src="/images/avatar-placeholder.svg" alt="Avatar" className="h-6 w-6" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-gray-900">张三</p>
+                  <p className="text-sm text-gray-500">技术总监, ABC科技</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <p className="text-gray-600 mb-4">"完整的功能集成和清晰的代码结构，让我们的开发团队可以专注于业务逻辑的实现。"</p>
+              <div className="flex items-center">
+                <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
+                  <img src="/images/avatar-placeholder.svg" alt="Avatar" className="h-6 w-6" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-gray-900">李四</p>
+                  <p className="text-sm text-gray-500">创始人, XYZ创新</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <p className="text-gray-600 mb-4">"内置的用户认证和支付系统为我们节省了大量的集成工作，真的很实用。"</p>
+              <div className="flex items-center">
+                <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
+                  <img src="/images/avatar-placeholder.svg" alt="Avatar" className="h-6 w-6" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-gray-900">王五</p>
+                  <p className="text-sm text-gray-500">产品经理, DEF公司</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">常见问题</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">如何开始使用这个模板？</h3>
+              <p className="text-gray-500">只需点击"Deploy your own"按钮，按照指引完成部署即可。我们提供详细的文档和配置说明。</p>
+            </div>
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">是否支持自定义主题？</h3>
+              <p className="text-gray-500">是的，我们使用TailwindCSS，您可以轻松自定义颜色、字体和其他样式。</p>
+            </div>
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">如何处理支付集成？</h3>
+              <p className="text-gray-500">我们已经集成了Stripe支付系统，您只需配置Stripe密钥即可开始接收付款。</p>
+            </div>
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">是否提供技术支持？</h3>
+              <p className="text-gray-500">是的，我们提供详细的文档和社区支持。企业版用户还可以获得专属技术支持。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                Ready to launch your SaaS?
+                准备好启动您的SaaS了吗？
               </h2>
               <p className="mt-3 max-w-3xl text-lg text-gray-500">
-                Our template provides everything you need to get your SaaS up
-                and running quickly. Don't waste time on boilerplate - focus on
-                what makes your product unique.
+                我们的模板提供了您需要的一切，帮助您快速启动SaaS产品。不要浪费时间在样板代码上 - 专注于让您的产品与众不同。
               </p>
             </div>
             <div className="mt-8 lg:mt-0 flex justify-center lg:justify-end">
               <a href="https://github.com/nextjs/saas-starter" target="_blank">
                 <Button className="bg-white hover:bg-gray-100 text-black border border-gray-200 rounded-full text-xl px-12 py-6 inline-flex items-center justify-center">
-                  View the code
+                  查看代码
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
               </a>

@@ -13,37 +13,66 @@ export default async function PricingPage() {
   ]);
 
   const basePlan = products.find((product) => product.name === 'Base');
-  const plusPlan = products.find((product) => product.name === 'Plus');
+  const proPlan = products.find((product) => product.name === 'Pro');
+  const enterprisePlan = products.find((product) => product.name === 'Enterprise');
 
   const basePrice = prices.find((price) => price.productId === basePlan?.id);
-  const plusPrice = prices.find((price) => price.productId === plusPlan?.id);
+  const proPrice = prices.find((price) => price.productId === proPlan?.id);
+  const enterprisePrice = prices.find((price) => price.productId === enterprisePlan?.id);
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="grid md:grid-cols-2 gap-8 max-w-xl mx-auto">
+      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <PricingCard
           name={basePlan?.name || 'Base'}
           price={basePrice?.unitAmount || 800}
           interval={basePrice?.interval || 'month'}
           trialDays={basePrice?.trialPeriodDays || 7}
           features={[
-            'Unlimited Usage',
-            'Unlimited Workspace Members',
-            'Email Support',
+            '最多5个工作区',
+            '基础功能访问',
+            '社区支持',
+            '标准API访问限制',
+            '基础数据分析',
+            '每日备份'
           ]}
           priceId={basePrice?.id}
         />
         <PricingCard
-          name={plusPlan?.name || 'Plus'}
-          price={plusPrice?.unitAmount || 1200}
-          interval={plusPrice?.interval || 'month'}
-          trialDays={plusPrice?.trialPeriodDays || 7}
+          name={proPlan?.name || 'Pro'}
+          price={proPrice?.unitAmount || 1500}
+          interval={proPrice?.interval || 'month'}
+          trialDays={proPrice?.trialPeriodDays || 7}
           features={[
-            'Everything in Base, and:',
-            'Early Access to New Features',
-            '24/7 Support + Slack Access',
+            '无限工作区',
+            '所有高级功能',
+            '优先邮件支持',
+            '高级API访问权限',
+            '高级数据分析和报表',
+            '实时备份',
+            '自定义集成',
+            '团队协作工具'
           ]}
-          priceId={plusPrice?.id}
+          priceId={proPrice?.id}
+          highlighted={true}
+        />
+        <PricingCard
+          name={enterprisePlan?.name || 'Enterprise'}
+          price={enterprisePrice?.unitAmount || 2500}
+          interval={enterprisePrice?.interval || 'month'}
+          trialDays={enterprisePrice?.trialPeriodDays || 7}
+          features={[
+            'Pro版所有功能',
+            '专属客户经理',
+            '24/7企业级支持',
+            '无限API调用',
+            '自定义数据分析',
+            '多区域部署',
+            'SLA保障',
+            '安全合规保障',
+            '专属培训'
+          ]}
+          priceId={enterprisePrice?.id}
         />
       </div>
     </main>
@@ -57,6 +86,7 @@ function PricingCard({
   trialDays,
   features,
   priceId,
+  highlighted,
 }: {
   name: string;
   price: number;
@@ -64,9 +94,10 @@ function PricingCard({
   trialDays: number;
   features: string[];
   priceId?: string;
+  highlighted?: boolean;
 }) {
   return (
-    <div className="pt-6">
+    <div className={`pt-6 ${highlighted ? 'ring-2 ring-orange-500 rounded-lg p-6' : 'p-6'}`}>
       <h2 className="text-2xl font-medium text-gray-900 mb-2">{name}</h2>
       <p className="text-sm text-gray-600 mb-4">
         with {trialDays} day free trial
