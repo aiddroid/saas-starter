@@ -24,17 +24,17 @@ export default async function PricingPage() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <PricingCard
-          name={basePlan?.name || 'Base'}
+          name={basePlan?.name || 'Basic'}
           price={basePrice?.unitAmount || 800}
           interval={basePrice?.interval || 'month'}
           trialDays={basePrice?.trialPeriodDays || 7}
           features={[
-            '最多5个工作区',
-            '基础功能访问',
-            '社区支持',
-            '标准API访问限制',
-            '基础数据分析',
-            '每日备份'
+            '项目管理',
+            '任务管理',
+            '甘特图基础视图',
+            '基础项目模板',
+            '最多5个项目',
+            '邮件支持'
           ]}
           priceId={basePrice?.id}
         />
@@ -44,33 +44,31 @@ export default async function PricingPage() {
           interval={proPrice?.interval || 'month'}
           trialDays={proPrice?.trialPeriodDays || 7}
           features={[
-            '无限工作区',
-            '所有高级功能',
+            'Basic版所有功能',
+            '多主题切换',
+            '高级项目模板',
+            '无限项目数量',
+            '团队协作功能',
             '优先邮件支持',
-            '高级API访问权限',
-            '高级数据分析和报表',
-            '实时备份',
-            '自定义集成',
-            '团队协作工具'
+            '项目统计分析'
           ]}
           priceId={proPrice?.id}
           highlighted={true}
         />
         <PricingCard
-          name={enterprisePlan?.name || 'Enterprise'}
+          name={enterprisePlan?.name || 'Ultra'}
           price={enterprisePrice?.unitAmount || 2500}
           interval={enterprisePrice?.interval || 'month'}
           trialDays={enterprisePrice?.trialPeriodDays || 7}
           features={[
             'Pro版所有功能',
+            '项目导入导出',
+            '自定义主题配置',
+            '高级数据分析',
             '专属客户经理',
-            '24/7企业级支持',
-            '无限API调用',
-            '自定义数据分析',
-            '多区域部署',
-            'SLA保障',
-            '安全合规保障',
-            '专属培训'
+            '24/7技术支持',
+            'API访问',
+            '安全合规保障'
           ]}
           priceId={enterprisePrice?.id}
         />
